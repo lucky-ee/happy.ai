@@ -155,13 +155,12 @@ Built by Hayley Prince, aka [lucky-ee](https://github.com/lucky-ee).
 
 ```bash
 happy.ai/
-├── happy.ai/
-│   ├── main.py
-│   ├── ai.py
-│   ├── memory.py
-│   ├── happy_prompt.txt
-│   ├── happy_memory.json
-│   ├── .env
-│   └── .gitignore
+├── main.py
+├── ai.py
+├── memory.py
+├── happy_prompt.txt
+├── happy_memory.json
+├── .env
+├── .gitignore
 └── README.md
 ```
