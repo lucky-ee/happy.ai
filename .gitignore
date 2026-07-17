@@ -1,0 +1,15 @@
+# Private credentials
+.env
+.env.*
+!.env.example
+
+# Private Happy files
+happy_memory.json
+happy_prompt.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
