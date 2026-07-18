@@ -35,7 +35,7 @@ bot = commands.Bot(
 
 def is_owner(user_id):
     if not HAPPY_OWNER_ID:
-        return True
+        return False
 
     return str(user_id) == str(HAPPY_OWNER_ID)
 
@@ -104,7 +104,8 @@ async def on_message(message):
                 print(f"Plan error: {error}")
 
                 await message.channel.send(
-                    f"⚠️ Error: {error}"
+                    "⚠️ Something went wrong making your plan. "
+                    "Check the logs for details."
                 )
 
         return
@@ -125,7 +126,8 @@ async def on_message(message):
             print(f"Happy response error: {error}")
 
             await message.channel.send(
-                f"✅ Message saved, but error generating reply: {error}"
+                "✅ Message saved, but something went wrong generating "
+                "a reply. Check the logs for details."
             )
 
 
@@ -149,7 +151,8 @@ async def plan_command(ctx):
             print(f"Plan command error: {error}")
 
             await ctx.send(
-                f"⚠️ An error occurred: `{error}`"
+                "⚠️ Something went wrong making your plan. "
+                "Check the logs for details."
             )
 
 
@@ -185,7 +188,8 @@ Use current web information and exact dates.
             print(f"Daily command error: {error}")
 
             await ctx.send(
-                f"⚠️ An error occurred: `{error}`"
+                "⚠️ Something went wrong generating your daily "
+                "breakdown. Check the logs for details."
             )
 
 
@@ -241,6 +245,13 @@ if __name__ == "__main__":
         raise ValueError(
             "Missing HAPPY_DISCORD_BOT_TOKEN or "
             "DISCORD_BOT_TOKEN in .env"
+        )
+
+    if not HAPPY_OWNER_ID:
+        raise ValueError(
+            "Missing HAPPY_OWNER_ID (or ALBIE_OWNER_ID) in .env. "
+            "Happy is a private assistant and refuses to start without "
+            "an owner ID, since is_owner() fails closed when it is unset."
         )
 
     bot.run(DISCORD_BOT_TOKEN)

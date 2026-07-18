@@ -99,9 +99,9 @@ DISCORD_BOT_TOKEN=
 HAPPY_MODEL=claude-sonnet-5
 
 HAPPY_OWNER_ID=
-HAPPY_MORNING_HOUR=8
-HAPPY_MORNING_MINUTE=0
 ```
+
+`HAPPY_OWNER_ID` is required — Happy refuses to start without it, since without an owner ID every Discord user who can message the bot would be treated as the owner.
 
 The `.env` file contains private credentials and must not be committed to GitHub.
 

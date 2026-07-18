@@ -28,7 +28,8 @@ def load_memory():
 
         return memory
 
-    except (json.JSONDecodeError, OSError):
+    except (json.JSONDecodeError, OSError) as error:
+        print(f"Could not read {MEMORY_FILE.name}, starting empty: {error}")
         return {"notes": []}
 
 
