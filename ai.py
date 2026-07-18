@@ -7,10 +7,7 @@ from zoneinfo import ZoneInfo
 from anthropic import AsyncAnthropic, APIError
 from dotenv import load_dotenv
 
-
-# ---------------------------------------------------------
-# Environment setup
-# ---------------------------------------------------------
+# Enviroment.
 
 ENV_FILE = Path(__file__).resolve().parent / ".env"
 load_dotenv(ENV_FILE)
@@ -26,9 +23,7 @@ if not ANTHROPIC_API_KEY:
 client = AsyncAnthropic(api_key=ANTHROPIC_API_KEY)
 
 
-# ---------------------------------------------------------
-# Happy's personality and responsibilities
-# ---------------------------------------------------------
+# Personality and responsibilites.
 
 PROMPT_FILE = Path(__file__).resolve().parent / "happy_prompt.txt"
 
@@ -51,9 +46,7 @@ def load_system_prompt():
 
 HAPPY_SYSTEM_PROMPT = load_system_prompt()
 
-# ---------------------------------------------------------
-# Response formatting
-# ---------------------------------------------------------
+# Response.
 
 def extract_answer_and_sources(response):
     """
@@ -90,17 +83,15 @@ def extract_answer_and_sources(response):
     return answer
 
 
-# ---------------------------------------------------------
-# Main Happy function
-# ---------------------------------------------------------
+# Main ask definition.
 
 async def ask_happy(user_message, notes=None):
     """
-    Send Hayley's message to Happy and return Happy's response.
+    Send user's message to Happy and return Happy's response.
 
     Saved notes are supplied as private context. Happy may use relevant
     information from them, but should not list or expose the notes unless
-    Hayley directly asks to see them.
+    user directly asks to see them.
     """
 
     current_date = datetime.now(
@@ -124,13 +115,13 @@ async def ask_happy(user_message, notes=None):
         {
             "role": "user",
             "content": (
-                f"Today's date in Hayley's timezone is "
+                f"Today's date in user's timezone is "
                 f"{current_date}.\n\n"
                 "The following saved notes are private context. "
                 "Use only notes relevant to the request. Do not list, "
-                "quote, or expose them unless Hayley explicitly asks.\n\n"
+                "quote, or expose them unless user explicitly asks.\n\n"
                 f"Saved notes:\n{notes_text}\n\n"
-                f"Hayley's message:\n{user_message}"
+                f"user's message:\n{user_message}"
             ),
         }
     ]
